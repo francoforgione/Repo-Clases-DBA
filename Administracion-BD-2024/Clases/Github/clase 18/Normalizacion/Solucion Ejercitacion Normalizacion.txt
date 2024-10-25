@@ -1,0 +1,88 @@
+Solucion Ejercitacion Normalizacion Parte 1
+
+
+Pasajero = @#Nro_Pasajero + Apellido + Nombre + #Cod_Pais_Nacimiento + Pais_Nacimiento + Telefono + Fecha_Nacimiento.
+
+
+No hay grupos repetitivos
+
+1FN
+
+Pasajero = @#Nro_Pasajero + Apellido + Nombre + #Cod_Pais_Nacimiento + Pais_Nacimiento + Telefono + Fecha_Nacimiento.
+
+
+esta tb en 2fn xq la pk es simple (ws)
+
+2FN
+
+Pasajero = @#Nro_Pasajero + Apellido + Nombre + #Cod_Pais_Nacimiento + Pais_Nacimiento + Telefono + Fecha_Nacimiento.
+
+
+3FN
+
+Pasajero = @#Nro_Pasajero + Apellido + Nombre + #Cod_Pais_Nacimiento + Telefono + Fecha_Nacimiento.
+
+Pais Nacimiento = @#Cod_Pais_Nacimiento + Pais_Nacimiento
+
+
+-------------------------------------------------------------------------
+
+Solucion Ejercitacion Normalizacion Parte 2
+
+Reserva Hotel = #Reserva + Nombre_Hotel + Fecha_Ingreso + Fecha_Egreso + Apellido_Cliente + Nombre_Cliente + DNI_Cliente + Cantidad_Clientes
+
+esta normalizada?
+
+1FN
+No existen grupos repetitivos, entonces ya esta en 1FN
+
+Reserva Hotel = @#Reserva + Nombre_Hotel + Fecha_Ingreso + Fecha_Egreso + Apellido_Cliente + Nombre_Cliente + DNI_Cliente + Cantidad_Clientes
+
+2FN
+
+Como la estructura tiene una clave principal simple, entonces ya esta
+en 2FN tambien.
+
+3FN
+
+Reserva Hotel = @#Reserva + Nombre_Hotel + Fecha_Ingreso + Fecha_Egreso + DNI_Cliente + Cantidad_Clientes
+
+Cliente = @#DNI_Cliente +  Apellido_Cliente + Nombre_Cliente
+
+----------------------------------------------------------------
+
+Clinica_Medica = @#Clinica + Nombre_Clinica + Dirección_Clinica + Teléfono_Clinica+ {@#Matricula_Medico + Apellido_Nombre_Medico + Fecha_Ingreso_a_la_Clinica + Codigo_Especialidad + Nombre_Especialidad}
+
+Nota: Especialidad, es la del médico.
+
+
+1FN
+
+Clinica_Medica = @#Clinica + Nombre_Clinica + Dirección_Clinica + Teléfono_Clinica
+
+
+Medico_Clinica = @#Matricula_Medico + @#Clinica + Apellido_Nombre_Medico + Fecha_Ingreso_a_la_Clinica + Codigo_Especialidad + Nombre_Especialidad
+
+2FN
+
+Clinica_Medica = @#Clinica + Nombre_Clinica + Dirección_Clinica + Teléfono_Clinica
+
+Medico_Clinica = @#Matricula_Medico + @#Clinica + Fecha_Ingreso_a_la_Clinica
+
+Medico = @#Matricula_Medico + Apellido_Nombre_Medico + Codigo_Especialidad + Nombre_Especialidad
+
+
+3FN
+
+Clinica_Medica = @#Clinica + Nombre_Clinica + Dirección_Clinica + Teléfono_Clinica
+
+Medico_Clinica = @#Matricula_Medico + @#Clinica + Fecha_Ingreso_a_la_Clinica
+
+Medico = @#Matricula_Medico + Apellido_Nombre_Medico + #Codigo_Especialidad + Nombre_Especialidad
+
+Especialidad = @#Codigo_Especialidad + Nombre_Especialidad
+
+-------------------------------------------------------------------------
+
+
+
